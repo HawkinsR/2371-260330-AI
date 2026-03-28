@@ -1,0 +1,211 @@
+### Week 3: AWS SageMaker and MLOps Production
+
+1. What is the primary overarching purpose of Amazon SageMaker?
+A. To strictly serve as an unstructured data warehouse
+B. To provide low-level, manual access to individual GPU hardware clusters
+C. To provide a fully managed platform for end-to-end machine learning lifecycle management
+D. To automatically generate Python code for basic data analytics
+Answer: C
+
+2. Within the SageMaker Python SDK, what specific task does a SageMaker `Estimator` handle?
+A. Managing the configuration and execution of model training jobs
+B. Dynamically routing live web traffic to inference endpoints
+C. Automatically labeling raw image datasets
+D. Provisioning identity and access management (IAM) roles
+Answer: A
+
+3. Scenario: You have written a custom PyTorch training script locally and want to run it on SageMaker's managed infrastructure without building a custom Docker container. What feature should you use?
+A. SageMaker Canvas
+B. AWS Lambda Serverless Functions
+C. SageMaker Autopilot
+D. SageMaker Script Mode
+Answer: D
+
+4. In the context of an AWS machine learning environment, what is AWS IAM (Identity and Access Management) strictly used for?
+A. Securely managing permissions and access rights for users, roles, and services
+B. Automatically tuning model hyperparameters
+C. Monitoring real-time inference latency metrics
+D. Distributing training data across multiple GPU instances
+Answer: A
+
+5. What does the "Bring Your Own Model" (BYOM) paradigm in SageMaker refer to?
+A. Writing a neural network architecture completely from scratch inside a SageMaker notebook
+B. Taking a pre-trained model built outside of SageMaker and uploading its artifacts for hosting
+C. Using one of Amazon's proprietary, pre-built foundation models
+D. Purchasing a fully trained algorithm from the AWS Marketplace
+Answer: B
+
+6. Scenario: Your custom PyTorch training code fails to execute on SageMaker because it requires external Python libraries that aren't in the default container. What is the standard fix? 
+A. Manually SSH into the training instance to `pip install` the libraries
+B. Switch the training job to a significantly larger EC2 instance type
+C. Include a `requirements.txt` file alongside your script to automatically install dependencies
+D. Reduce the batch size so the container requires less memory
+Answer: C
+
+7. What is the primary operational purpose of explicitly passing hyperparameters to a SageMaker Estimator?
+A. To securely encrypt the final model weights
+B. To configure the internal variables of the training job dynamically without hardcoding them
+C. To permanently store the training dataset in an S3 bucket
+D. To define the web routing rules for the final API endpoint
+Answer: B
+
+8. What overarching workflow does the SageMaker Python SDK actively simplify for data scientists? 
+A. Programmatic interaction with complex AWS infrastructure and ML services using native Python code
+B. The automatic mathematical optimization of the backpropagation algorithm
+C. Manually labeling and classifying massive unstructured image datasets
+D. Writing the core underlying PyTorch or TensorFlow neural network logic
+Answer: A
+
+9. Scenario: You launch a SageMaker training job, but it fails immediately after starting. Where is the very first place you should check for error details? 
+A. The Amazon EC2 billing dashboard
+B. The AWS CloudWatch logs associated with the training job
+C. The raw dataset stored in Amazon S3
+D. The local terminal of your Jupyter notebook
+Answer: B
+
+10. After a SageMaker training job successfully completes, it outputs a file named `model.tar.gz`. What exactly does this file contain?
+A. The raw dataset utilized during the training loop
+B. A detailed JSON log of the hyperparameter configurations
+C. The packaged, finalized model weights and artifacts required for inference
+D. The underlying Python inference script
+Answer: C
+
+11. When deploying a custom PyTorch model on SageMaker, what is the specific programmatic responsibility of the `model_fn` function?
+A. To define the forward and backward passes of the training loop
+B. To parse incoming HTTP JSON requests into physical tensors
+C. To format the final mathematical predictions into a user-friendly output
+D. To load the saved model weights from disk into memory for inference
+Answer: D
+
+12. In a standard SageMaker custom inference script, what does the `predict_fn` function handle?
+A. Loading the serialized model artifacts from Amazon S3
+B. Executing the core inference logic by passing the processed input data through the loaded model
+C. Setting up the secure API Gateway routing configurations
+D. Normalizing and cleaning the raw training dataset
+Answer: B
+
+13. Scenario: Your successfully deployed SageMaker endpoint is returning wildly incorrect predictions, even though the model trained perfectly. What should you debug first?
+A. The custom inference script logic
+B. The IAM execution role attached to the endpoint
+C. The hardware instance size of the hosting server
+D. The batch size configured during the original training job
+Answer: A
+
+14. What defines a SageMaker Real-Time Endpoint?
+A. A fully managed, low-latency web service that hosts a model to provide immediate predictions
+B. A massive, offline compute cluster designed to process gigabytes of data overnight
+C. A distributed hardware cluster strictly utilized for parallel model training
+D. An automated CI/CD pipeline step that evaluates model accuracy
+Answer: A
+
+15. When deciding between CPU and GPU instances for a SageMaker inference endpoint, what is the primary technical difference?
+A. CPUs are fundamentally required to run deep learning frameworks like PyTorch
+B. GPUs are always cheaper to operate per hour than CPUs
+C. CPUs process massive, dense matrix multiplications significantly faster
+D. GPUs possess thousands of cores, making them far better at handling the parallel computations required by deep learning models
+Answer: D
+
+16. Scenario: You deploy a heavy transformer model to a real-time endpoint, but the inference latency is unacceptably high (too slow). What architectural change is most likely to help?
+A. Switch the hosting hardware to a GPU-accelerated instance
+B. Decrease the learning rate used during the training phase
+C. Use a smaller batch size during the original model training job
+D. Change the IAM execution role attached to the endpoint
+Answer: A
+
+17. What is the specific operational purpose of configuring Auto-Scaling on a SageMaker endpoint?
+A. To automatically optimize the underlying Python code for faster execution
+B. To automatically adjust the number of active hosting instances based on incoming web traffic load
+C. To dynamically increase the mathematical accuracy of the model over time
+D. To automatically compress the `model.tar.gz` file size to save S3 storage costs
+Answer: B
+
+18. What occurs during a "rolling deployment" strategy when updating a SageMaker endpoint?
+A. All incoming traffic is immediately blocked until the new model is fully loaded
+B. The system gradually replaces the old model instances with the new model instances to ensure zero downtime
+C. The system deletes the old model entirely from S3 before provisioning the new one
+D. 100% of web traffic is instantly routed to the new model
+Answer: B
+
+19. What does the term "MLOps" fundamentally refer to in a production environment?
+A. The manual, physical provisioning of cloud servers and network routing
+B. The practice of writing deep learning training loops and architectures
+C. The integration of Machine Learning development with standard DevOps practices for continuous delivery and automation
+D. The exclusive use of visual dashboards to monitor data drift
+Answer: C
+
+20. What is the primary enterprise use case for the SageMaker Model Registry?
+A. To automatically execute daily training loops on fresh datasets
+B. To securely store, version, and manage the approval status of trained models
+C. To strictly act as a raw unstructured data lake
+D. To track real-time sub-second latency metrics across live API endpoints
+Answer: B
+
+21. Scenario: A financial institution requires a human manager's manual approval before any updated model can be deployed to production. What SageMaker feature natively supports this?
+A. A custom AWS Lambda function triggered by an S3 upload
+B. Manually changing EC2 instance tags
+C. Creating an automated CloudWatch alarm
+D. The built-in approval workflow statuses within the SageMaker Model Registry
+Answer: D
+
+22. What significant operational advantage does a CI/CD (Continuous Integration / Continuous Deployment) pipeline provide in machine learning?
+A. It automates the end-to-end workflows of testing, building, and deploying models consistently
+B. It completely eliminates the need for data labeling
+C. It automatically performs advanced feature engineering on raw datasets
+D. It ensures models are only ever manually retrained by data scientists
+Answer: A
+
+23. In the context of SageMaker, what is pipeline automation primarily used for?
+A. Purely managing standard S3 bucket retention policies
+B. Generating interactive graphical data visualizations
+C. The structured orchestration of end-to-end ML workflows, from data processing to model deployment
+D. Automatically writing custom Python inference scripts
+Answer: C
+
+24. Scenario: Your production real-time endpoint is barely receiving traffic, but your AWS bill is extremely high. What is the simplest infrastructural change to reduce costs?
+A. Increase the Auto-Scaling minimum instance threshold
+B. Downsize the endpoint to use a smaller, less expensive instance type
+C. Switch the endpoint to a massive multi-GPU instance to process requests faster
+D. Retrain the model using more epochs
+Answer: B
+
+25. How does a SageMaker Batch Transform (Batch Inference) job differ from a Real-Time Endpoint?
+A. It is designed to process large-scale datasets offline all at once, rather than providing sub-second responses to live API calls
+B. It is a distributed training technique used for massive foundation models
+C. It automatically applies dynamic data augmentation to images
+D. It requires an active web socket connection to stream responses
+Answer: A
+
+26. When deploying a model, which two factors most heavily affect the inference latency?
+A. The learning rate and the chosen optimizer used during training
+B. The overall size of the original training dataset and the number of epochs
+C. The complexity of the model architecture and the hardware instance type hosting it
+D. The S3 storage tier and the specific AWS region
+Answer: C
+
+27. Scenario: A model achieved 95% accuracy during testing, but three months after deployment, its accuracy drops to 70% because real-world consumer behavior changed. What is this phenomenon called?
+A. Catastrophic forgetting
+B. Training set overfitting
+C. Vanishing gradients
+D. Data drift
+Answer: D
+
+28. Which native AWS tool is fundamentally used for monitoring the logs, metrics, and health of SageMaker training jobs and endpoints? 
+A. AWS Lambda
+B. Amazon CloudWatch
+C. Amazon S3
+D. Amazon DynamoDB
+Answer: B
+
+29. What is the operational purpose of executing a "shadow deployment" in SageMaker?
+A. To securely delete an old model version without interrupting service
+B. To safely test a new model by routing a copy of live production traffic to it alongside the old model, without affecting the end-user response
+C. To instantly replace an existing model with a new version across all servers
+D. To automatically scale up the physical hardware instances just before a major traffic spike
+Answer: B
+
+30. What is the primary value proposition of the AWS Bedrock service?
+A. Providing highly secure storage for massive relational SQL databases
+B. Offering a unified API to easily access and utilize industry-leading foundation models (LLMs)
+C. Giving developers low-level control to manually construct random forest models
+D. Strictly monitoring the physical hardware health of GPU clusters
+Answer: B

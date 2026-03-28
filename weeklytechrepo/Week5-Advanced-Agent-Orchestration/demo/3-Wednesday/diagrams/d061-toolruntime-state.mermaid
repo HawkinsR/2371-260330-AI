@@ -1,0 +1,21 @@
+graph TD
+    A[User Input & Conversation History] --> B[Middleware: Message Trimmer]
+    
+    subgraph Execution Context
+    B -->|Keeps System Prompt & Last N Messages| C[Core LLM Node]
+    
+    C -->|Invokes Tool with args| D[Tool Node]
+    
+    E[Graph Config / State] -.->|Injects Runtime Variables implicitly| D
+    end
+    
+    D -->|Returns Result| C
+    C --> F[Final State Update]
+    
+    subgraph The Problem Solved
+    G[Long History = Token Limits & Hallucinations]
+    H[LLM Guessing Variables = Security Risk]
+    end
+    
+    B -.->|Solves| G
+    E -.->|Solves| H

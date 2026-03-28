@@ -1,0 +1,12 @@
+graph LR
+    A[Pre-trained ResNet18] --> B[Frozen Feature Extractor]
+    B --> C[Flatten Layer]
+    C --> D[Old Classifier: 1000 classes]
+    
+    subgraph Fine-Tuning
+    C --> E[New Classifier: Custom Classes]
+    end
+    
+    D -.->|Discard| X[Trash]
+    E --> F[Requires Grad = True]
+    B -.->|Requires Grad = False| B

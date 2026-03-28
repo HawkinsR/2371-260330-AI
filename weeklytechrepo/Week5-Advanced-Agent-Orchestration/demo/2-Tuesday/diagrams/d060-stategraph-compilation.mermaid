@@ -1,0 +1,23 @@
+graph TD
+    %% Define the State Object as a global floating entity
+    subgraph Global Memory
+    S[TypedDict State:
+    - user_input
+    - category
+    - final_answer]
+    end
+    
+    %% Graph Definition
+    START((START)) --> A[Node 1: Categorizer]
+    A -.->|Reads/Writes| S
+    
+    A --> B{Conditional Router}
+    
+    B -->|category == 'billing'| C[Node 2: Billing Team]
+    B -->|category == 'technical'| D[Node 3: Tech Support]
+    
+    C -.->|Writes final_answer| S
+    D -.->|Writes final_answer| S
+    
+    C --> END((END))
+    D --> END((END))

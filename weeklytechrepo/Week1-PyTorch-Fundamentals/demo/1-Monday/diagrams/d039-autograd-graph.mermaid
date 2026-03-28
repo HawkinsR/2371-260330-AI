@@ -1,0 +1,12 @@
+graph TD
+    A[Input Tensor x] -->|Weight w| Mult{Multiply}
+    Mult -->|Bias b| Add{Add}
+    Add --> Output[Prediction y]
+    
+    Output -.->|Loss Calculation| L[Loss Layer]
+    L -.->|dLoss/db| Add
+    L -.->|dLoss/dw| Mult
+    
+    style A fill:#f9f,stroke:#333
+    style Output fill:#bbf,stroke:#333
+    style L fill:#f66,stroke:#333,color:#fff

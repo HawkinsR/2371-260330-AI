@@ -1,0 +1,38 @@
+graph TD
+    subgraph Epoch Loop
+        A[Start Epoch N] --> B[Training Phase]
+        
+        subgraph Training Phase
+            B --> C(model.train)
+            C --> D[Forward Pass]
+            D --> E[Compute Loss]
+            E --> F[Zero Gradients]
+            F --> G[loss.backward]
+            G --> H[optimizer.step]
+            H --> I{Iterate Training Batches}
+            I -->|Next Batch| D
+            I -->|Epoch Complete| J[Validation Phase]
+        end
+        
+        subgraph Validation Phase
+            J --> K(model.eval)
+            K --> L(torch.no_grad)
+            L --> M[Forward Pass]
+            M --> N[Compute Val Loss]
+            N --> O{Iterate Val Batches}
+            O -->|Next Batch| M
+            O -->|Val Complete| P{Is Val Loss < Best Loss?}
+        end
+        
+        P -->|Yes| Q(torch.save)
+        P -->|No| R[Continue]
+        Q --> R
+        
+        R --> S{More Epochs?}
+        S -->|Yes| A
+        S -->|No| T[Finished]
+    end
+    
+    style B fill:#ffebee,stroke:#c62828
+    style J fill:#e3f2fd,stroke:#1565c0
+    style Q fill:#e8f5e9,stroke:#2e7d32

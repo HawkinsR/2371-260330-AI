@@ -1,0 +1,23 @@
+graph TD
+    subgraph Data Loading
+    A[Raw PDF / HTML / TXT] --> B[LangChain Document Loader]
+    B -->|Returns raw string + metadata| C[Raw Document Object]
+    end
+    
+    subgraph Chunking Phase
+    C --> D[RecursiveCharacterTextSplitter]
+    D -->|Chunk Size: 1000| E[Chunks 1..N]
+    D -->|Overlap: 200| E
+    end
+    
+    subgraph Indexing Phase
+    E --> F[Embedding Model]
+    F --> G[(VectorStore: FAISS/Pinecone)]
+    end
+    
+    subgraph Retriever Interface
+    H[User Query] --> I[vectorstore.as_retriever]
+    I -->|Embeds Query| G
+    G -->|Returns Top Chunks| I
+    I --> J[Formatted Context string]
+    end

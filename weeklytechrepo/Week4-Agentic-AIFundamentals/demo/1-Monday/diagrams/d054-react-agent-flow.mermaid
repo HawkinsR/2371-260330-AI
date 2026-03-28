@@ -1,0 +1,15 @@
+graph TD
+    A[User Prompt] --> B{Agentic LLM / Core Loop}
+    
+    subgraph Reasoning Phase
+    B -->|Thought: What should I do?| C[Decision: Call Tool or Return Final Answer]
+    end
+    
+    subgraph Action Phase
+    C -->|Tool Chosen| D[Execute @tool Python Function]
+    D -->|Tool Returns Data| E[Observation Added to Context]
+    end
+    
+    E --> B
+    C -->|No Tools Needed| F[Format Final Output via Pydantic]
+    F --> G[Structured JSON Response]

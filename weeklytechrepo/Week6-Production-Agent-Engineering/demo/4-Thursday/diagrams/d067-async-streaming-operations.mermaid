@@ -1,0 +1,18 @@
+graph TD
+    A[React Frontend] -->|HTTP POST| B[FastAPI Server / LangGraph Cloud]
+    
+    subgraph Asynchronous Graph Execution
+    B -->|ainvoke| C[Node 1: Initialize]
+    C -->|astream_events| D[Node 2: Web Search Tool]
+    D --> E[Node 3: LLM Synthesis]
+    end
+    
+    D -.->|event: on_tool_end| A
+    E -.->|event: on_chat_model_stream| A
+    
+    subgraph User Experience
+    A -->|Receives Tool Event| F[UI Shows 'Searching Web...']
+    A -->|Receives Token Chunks| G[UI Typerwriter Animation]
+    end
+    
+    E --> H[Final JSON State]

@@ -1,0 +1,17 @@
+graph TD
+    A[S3 Bucket: model.tar.gz] --> B[PyTorchModel object]
+    C[inference.py script] --> B
+    
+    B -->|Deploy Command| D[SageMaker Real-Time Endpoint]
+    
+    subgraph Auto-scaling Load Balancer
+    D --> E[Instance 1: ml.m5.large]
+    D -.->|Traffic Spike| F[Instance 2: ml.m5.large]
+    D -.->|Traffic Spike| G[Instance 3: ml.m5.large]
+    end
+    
+    H[Client Application] -->|HTTP POST JSON| D
+    E -->|HTTP Response 200| H
+    
+    I((CloudWatch Alarm)) -.->|Invocations/Instance > Threshold| F
+    I -.->|Invocations/Instance > Threshold| G

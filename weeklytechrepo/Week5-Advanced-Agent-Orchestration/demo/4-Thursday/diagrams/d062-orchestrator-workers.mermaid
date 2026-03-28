@@ -1,0 +1,22 @@
+graph TD
+    A[User Request] --> B{Supervisor / Orchestrator}
+    
+    subgraph Multi-Agent System
+    B -->|Routes Task| C[Writer Agent]
+    C -->|Returns Draft| B
+    
+    B -->|Routes Task| D[Compliance Agent]
+    D -->|Returns Feedback| B
+    
+    B -->|Routes Task| E[SEO Agent]
+    E -->|Returns Keywords| B
+    end
+    
+    B -->|Decides Task is Complete| F[Final Output Aggregation]
+    
+    %% Note styling
+    classDef supervisor fill:#f9f,stroke:#333,stroke-width:2px;
+    class B supervisor;
+    
+    classDef worker fill:#bbf,stroke:#333,stroke-width:1px;
+    class C,D,E worker;

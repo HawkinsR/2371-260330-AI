@@ -1,0 +1,30 @@
+import argparse
+import os
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--epochs', type=int, default=10)
+    parser.add_argument('--learning_rate', type=float, default=0.01)
+    
+    parser.add_argument('--model-dir', type=str, default=os.environ.get('SM_MODEL_DIR', './model'))
+    parser.add_argument('--train', type=str, default=os.environ.get('SM_CHANNEL_TRAIN', './data'))
+    
+    args, _ = parser.parse_known_args()
+    
+    print("\n--- [REMOTE CONTAINER] ---")
+    print("Simulating pip install from requirements.txt...")
+    try:
+        import pandas as pd
+        print(f"Pandas {pd.__version__} installed successfully!")
+    except ImportError:
+        print("ERROR: Pandas not found. Did you configure source_dir and requirements.txt correctly?")
+        
+    print(f"Loading S3 training data from: {args.train}")
+    print(f"Beginning training for {args.epochs} epochs at LR={args.learning_rate}...")
+    
+    for epoch in range(1, 4):
+        loss = 1.0 / epoch
+        print(f"Epoch {epoch} - Loss: {loss:.4f}")
+        
+    print(f"Training Complete. Saving model artifact to {args.model_dir}...")
+    print("--- [REMOTE CONTAINER CLOSED] ---\n")

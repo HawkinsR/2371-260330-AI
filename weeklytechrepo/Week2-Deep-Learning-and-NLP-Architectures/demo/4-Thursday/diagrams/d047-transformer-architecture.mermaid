@@ -1,0 +1,14 @@
+graph TD
+    A[Input Text] --> B[AutoTokenizer]
+    B -->|Input IDs, Attention Mask| C[BERT Encoder Block]
+    
+    subgraph Self-Attention Mechanism
+    C --> D[Query Vector]
+    C --> E[Key Vector]
+    C --> F[Value Vector]
+    D & E --> G[Attention Scores]
+    G & F --> H[Context Matrix]
+    end
+    
+    H --> I[AutoModel Classification Head]
+    I --> J[Predicted Logits]

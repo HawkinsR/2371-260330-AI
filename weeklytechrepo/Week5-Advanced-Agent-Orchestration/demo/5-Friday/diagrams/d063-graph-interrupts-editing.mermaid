@@ -1,0 +1,20 @@
+graph TD
+    A[User Request] --> B[Node 1: Draft Email]
+    
+    subgraph Persistent Checkpointer
+    B -->|Saves State| C(Checkpointer DB)
+    end
+    
+    C --> D{Interrupt Flag: interrupt_before='SendEmail'}
+    
+    D -->|Halts Execution| E[Graph Sleeps]
+    
+    subgraph Human-in-the-Loop
+    E -->|UI Display| F[Human Manager Reviews Draft]
+    F -->|Clicks Approve| G[Resume Graph from Checkpoint]
+    F -->|Clicks Reject/Edit| H[Inject 'Command' updating State]
+    end
+    
+    H --> G
+    G --> I[Node 2: Send Email]
+    I --> J[Return Success]

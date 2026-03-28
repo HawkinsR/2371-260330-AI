@@ -1,0 +1,19 @@
+graph TD
+    A[Start Epoch] --> B[Forward Pass: autocast float16]
+    B --> C[Loss Calculation]
+    C --> D[scaler.scale backpropagation]
+    
+    subgraph Optimization Mechanics
+    D --> E[scaler.unscale_]
+    E --> F[clip_grad_norm_ max_norm=1.0]
+    F --> G[scaler.step optimizer]
+    G --> H[scaler.update]
+    end
+    
+    H --> I{Validation Loss Improved?}
+    I -->|Yes| J[Save Best Checkpoint]
+    I -->|No| K[Increment Patience Counter]
+    K --> L{Counter > Max Patience?}
+    L -->|Yes| M[Early Stopping Triggered]
+    L -->|No| A
+    J --> A

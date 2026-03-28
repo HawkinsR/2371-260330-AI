@@ -1,0 +1,18 @@
+graph TD
+    A[User Question] --> B{Agentic LLM Core}
+    
+    subgraph Reasoning Loop
+    B -->|Thought: Do I need internal data?| C{Decision}
+    C -->|Yes: I need policy info| D[Execute Retriever Tool]
+    C -->|Yes: I need live data| E[Execute Web Search Tool]
+    C -->|No: Standard Query| F[Generate Native Answer]
+    end
+    
+    subgraph RAG Integration
+    D -->|Query Vector Database| G[(Knowledge Base)]
+    G -->|Returns Docs + Metadata| D
+    D -->|Inject Docs into Context| B
+    end
+    
+    B -->|Final Synthesis| H[Structured Output]
+    H --> I[Response with Citations]

@@ -1,0 +1,20 @@
+graph TD
+    A[End of Training Job] -->|Saves state_dict| B[model.pth]
+    C[model.py Architecture Class] --> D[Package into Archive]
+    B --> D
+    
+    D -->|Uploads via SDK| E[S3: model.tar.gz]
+    
+    subgraph SageMaker Endpoint Initialization
+    E -->|Downloads to container| F[model_fn]
+    F -->|Instantiates Architecture & Loads Weights| G[Model Loaded in RAM]
+    end
+    
+    subgraph Real-Time Inference
+    H[React Web App JSON Payload] -->|HTTP POST| I[input_fn]
+    I -->|Returns PyTorch Tensor| J[predict_fn]
+    J -->|Calls model.forward| G
+    G -->|Raw Output| J
+    J --> K[output_fn]
+    K -->|Returns JSON| L[React Web App Response]
+    end

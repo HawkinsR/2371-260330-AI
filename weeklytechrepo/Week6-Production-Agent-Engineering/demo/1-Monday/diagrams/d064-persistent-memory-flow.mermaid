@@ -1,0 +1,19 @@
+graph TD
+    A[User Request] --> B{Does User ID Exist?}
+    
+    subgraph Persistent State
+    B -->|Yes| C[Read from Store]
+    B -->|No| D[Create New Namespace]
+    C --> E[Extract User Preferences]
+    D --> F[Write Default Preferences to Store]
+    
+    E --> G[Generate Response with Context]
+    F --> G
+    end
+    
+    subgraph Multi-Turn Memory
+    G --> H[Update Thread Checkpoint]
+    H -->|User Returns Later| A
+    end
+    
+    G --> I[Final Response]

@@ -1,0 +1,22 @@
+classDiagram
+    class Module
+    Module : +forward()
+    Module : +parameters()
+    
+    class LinearRegressionModel {
+        +nn.Linear linear_layer
+        +__init__(input_dim, output_dim)
+        +forward(x)
+    }
+    
+    Module <|-- LinearRegressionModel : Inherits
+    
+    class TrainingLoop {
+        +Optimizer adam
+        +LossFunction mse
+        +train(epochs)
+    }
+    
+    LinearRegressionModel --> TrainingLoop : Model passed to Optimizer
+    
+    note for LinearRegressionModel "The forward pass defines how input x becomes prediction y_hat"

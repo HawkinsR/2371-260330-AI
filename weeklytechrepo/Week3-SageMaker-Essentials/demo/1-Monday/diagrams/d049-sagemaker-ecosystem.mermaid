@@ -1,0 +1,15 @@
+graph TD
+    A[Local Developer Laptop] -->|Writes PyTorch Script| B[train.py]
+    B --> C[SageMaker SDK Estimator]
+    
+    subgraph AWS Cloud Ecosystem
+    C -->|Spins Up| D[Managed EC2 Instance]
+    D -->|Pulls Image| E[AWS Deep Learning Container]
+    D -->|Downloads Data| F[S3 Bucket Data]
+    E --> G[Executes train.py]
+    G -->|Saves Artifact| H[S3 Bucket Model Output]
+    end
+    
+    I[AWS IAM Role] -.->|Grants Permissions| D
+    I -.->|Allows Read| F
+    I -.->|Allows Write| H

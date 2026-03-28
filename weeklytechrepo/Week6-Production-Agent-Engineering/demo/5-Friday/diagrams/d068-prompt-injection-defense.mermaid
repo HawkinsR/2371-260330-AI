@@ -1,0 +1,20 @@
+graph TD
+    A[User Input] --> B[Firewall Node: Input Sanitizer]
+    
+    subgraph Security Layer
+    B --> C{Detects Malicious Patterns?}
+    end
+    
+    C -->|Yes: Injection Attempt| D[Denial Node]
+    C -->|No: Safe Prompt| E[Core Agent / LLM]
+    
+    subgraph Execution Layer
+    E -->|Generates Response| F[Validation Node: PII Scanner]
+    F --> G{Contains Sensitive Data?}
+    end
+    
+    G -->|Yes: SSN/Credit Card found| H[Redaction Node]
+    G -->|No: Clean Output| I[Final Secure Response]
+    
+    D -->|Canned Message| I
+    H --> I

@@ -1,0 +1,16 @@
+graph TD
+    A[User Query: "Write a short poem about LangGraph"] --> B[Generator Node]
+    B -->|Initial Draft| C[Evaluator / Critique Node]
+    
+    subgraph Iterative Refinement Loop
+    C -->|Reads Draft + Original Prompt| D{Is it PERFECT?}
+    D -->|No: Error Found| E[Generate Feedback / Critique]
+    E -->|Pass Critique back to State| B
+    B -.->|Rewrite with Feedback| C
+    end
+    
+    D -->|Yes: Meets Standards| F[END: Release to User]
+    
+    subgraph Failsafe
+    E -.->|Loop Limit Reached| G[END: Release Best Effort]
+    end

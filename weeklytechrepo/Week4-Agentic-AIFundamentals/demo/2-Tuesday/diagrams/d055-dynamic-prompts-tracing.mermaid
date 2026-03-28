@@ -1,0 +1,19 @@
+graph TD
+    A[User Input + Execution Start] --> B[Environment Setup]
+    
+    subgraph Context Engineering
+    B --> C[ChatPromptTemplate]
+    C -->|Inject Variables| D[System Message: Context]
+    C -->|Inject Query| E[Human Message: Goal]
+    end
+    
+    subgraph LangSmith Telemetry (Invisible)
+    D & E -->|Traced Payload| F[LangChain Chain]
+    F -->|Raw LLM Call| G[OpenAI Model]
+    G -->|Tokens & Latency Logged| F
+    end
+    
+    F -->|Secure Async Logging| H[(LangSmith Cloud Dashboard)]
+    F --> I[Formatted Output Return]
+    
+    I --> J[Application State Updated]

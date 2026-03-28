@@ -1,0 +1,13 @@
+graph TD
+    A[Raw Text] --> B[Tokenizer / Vocabulary]
+    B -->|Integer IDs| C[Embedding Layer]
+    C -->|Dense Vectors| D[LSTM Cell]
+    
+    subgraph LSTM Time Steps
+    D -->|Step 1: Word 1| E[Hidden State 1]
+    E -->|Step 2: Word 2 + Hidden 1| F[Hidden State 2]
+    F -->|Step N: Word N + Hidden N-1| G[Final Hidden State]
+    end
+    
+    G --> H[Linear Classifier]
+    H --> I[Prediction]

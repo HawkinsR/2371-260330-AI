@@ -1,0 +1,14 @@
+graph TD
+    A[Local 'launch_job.py'] -->|Configures| B[PyTorch Estimator]
+    B -->|Calls .fit()| C{SageMaker Training Infrastructure}
+    
+    subgraph Asynchronous Cloud Execution
+    C --> D[Uploads 'train.py' to S3]
+    C --> E[Provisions EC2 Instances]
+    C --> F[Downloads S3 Data to instances]
+    D & E & F --> G[Executes 'train.py' with Hyperparameters]
+    G -->|Outputs model.pth| H[Saves Artifact to S3]
+    end
+    
+    A -.->|Waits for logs| C
+    G -.->|Streams metrics| A

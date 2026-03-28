@@ -1,0 +1,211 @@
+### Week 2: Deep Learning Architectures (CNNs, RNNs, and Transformers)
+
+1. What is the primary purpose of a convolution layer in a neural network?
+A. To randomly drop out neurons to prevent overfitting
+B. To dynamically adjust the learning rate during training
+C. To automatically normalize the input image's color channels
+D. To apply filters that extract spatial features like edges and textures
+Answer: D
+
+2. Scenario: You are tuning a CNN and increase the kernel size from 3x3 to 7x7. What is the primary impact of this change?
+A. It creates a larger receptive field, allowing the network to capture broader spatial context
+B. It significantly reduces the computational load and speeds up training
+C. It automatically adds padding to preserve the original image dimensions
+D. It strictly limits the model to only detecting high-frequency noise
+Answer: A
+
+3. When configuring a convolutional layer, what exactly does the "stride" hyperparameter control? 
+A. The total number of unique filters applied to the input image
+B. The step size the convolutional filter takes as it moves across the image
+C. The percentage of neurons disabled during the forward pass
+D. The specific mathematical function used to introduce non-linearity
+Answer: B
+
+4. Scenario: While designing a deep CNN, you notice your feature maps are shrinking too quickly in their spatial dimensions before reaching the end of the network. What configuration can help prevent this? 
+A. Use padding to add a border of pixels (usually zeros) around the input
+B. Increase the stride to move the filter faster across the image
+C. Decrease the total number of convolutional filters
+D. Apply a softmax activation function to normalize the output shape
+Answer: A
+
+5. What is the fundamental purpose of utilizing pooling layers (like Max Pooling) in a CNN architecture?  
+A. To generate synthetic training data using spatial transformations
+B. To increase the spatial resolution of the feature maps
+C. To reduce the spatial dimensions of the feature maps, lowering computational cost
+D. To convert the final 2D feature maps into a 1D vector for classification
+Answer: C
+
+6. What is the defining architectural feature that allowed ResNet (Residual Networks) to successfully train significantly deeper networks than previous models? 
+A. Bidirectional recurrent memory gates
+B. Multi-head self-attention mechanisms
+C. Residual blocks with skip (or shortcut) connections
+D. Entirely removing all pooling layers from the architecture
+Answer: C
+
+7. Scenario: You are training a standard, very deep neural network. As you add more layers, the accuracy abruptly stops improving and actually starts to degrade. What is the standard architectural solution to this "degradation problem"?
+A. Increase the batch size to push more data through the network simultaneously
+B. Drastically lower the learning rate to slow down convergence
+C. Remove all activation functions from the deeper layers
+D. Apply residual connections to allow gradients to flow backwards more easily
+Answer: D
+
+8. Which evaluation metric is most commonly used as the gold standard for measuring the accuracy of image segmentation tasks?
+A. Intersection over Union (IoU)
+B. Root Mean Squared Error (RMSE)
+C. Mean Absolute Error (MAE)
+D. Standard Classification Accuracy
+Answer: A
+
+9. In the context of computer vision, what exactly does the IoU (Intersection over Union) metric mathematically measure? 
+A. The total percentage of the image background that the model correctly ignored
+B. The absolute difference in pixel intensity between the prediction and the ground truth
+C. The total number of false positive pixels divided by the learning rate
+D. The ratio of the overlapping area between the predicted bounding box and the true bounding box to their combined total area
+Answer: D
+
+10. Which statement best defines the concept of "transfer learning" in machine learning?
+A. Taking a model trained on a massive dataset and repurposing its learned features to solve a different, but related, target task
+B. Training a neural network entirely from scratch using a randomly initialized state
+C. Compressing a massive deep learning model into a smaller, faster version for mobile devices
+D. Automatically generating new synthetic data points to expand a small, imbalanced dataset
+Answer: A
+
+11. Scenario: When applying transfer learning to a pre-trained CNN, you decide to "freeze" the early layers and only train the final layers. Why is this a common practice?
+A. To preserve the general, foundational features (like edges and basic shapes) the model already learned and only adapt the final layers to the new specific classes
+B. To completely clear out the model's memory so it can memorize the new dataset faster
+C. To automatically reduce the physical storage size of the neural network on the hard drive
+D. To randomly inject noise into the early layers to prevent severe overfitting
+Answer: A
+
+12. In the context of transfer learning, what does the process of "fine-tuning" involve?
+A. Permanently freezing all weights in the network so it acts purely as a static feature extractor
+B. Training the entire pre-trained model (or a large portion of it) using a very small learning rate to slightly adjust the weights for a new task
+C. Removing all convolutional layers and replacing them entirely with fully connected dense layers
+D. Randomly dropping out 50% of the neurons before starting the training loop
+Answer: B
+
+13. When saving or loading a trained model in PyTorch, what exactly is the `state_dict`?
+A. A special debugging tool that halts training if the model starts to overfit
+B. The core tensor array where the physical dataset is temporarily cached in memory
+C. The official Python dictionary containing all of the model's learned parameters (weights and biases)
+D. A structured log file that records the validation accuracy after every single epoch
+Answer: C
+
+14. What fundamental type of data is a Recurrent Neural Network (RNN) natively best suited to process?
+A. High-resolution static image files
+B. Sequential or time-series data
+C. Unstructured geometric point clouds
+D. Standard relational tabular data
+Answer: B
+
+15. Scenario: You are training a standard RNN on extremely long sequences of text, but notice the model completely forgets information from the very beginning of the sequence. What is the mathematical cause of this problem?
+A. The optimizer's learning rate is set significantly too high
+B. The dropout rate is accidentally set to 0% across all layers
+C. The network is experiencing the vanishing gradient problem
+D. The model is suffering from a massive target data imbalance
+Answer: C
+
+16. What distinct architectural advantage do LSTMs (Long Short-Term Memory networks) possess over standard, traditional RNNs?
+A. They rely exclusively on 1D convolutional filters, making them significantly faster to train
+B. They utilize dedicated memory gating mechanisms to effectively capture and retain long-term dependencies
+C. They completely eliminate the need for backpropagation during the training process
+D. They use far fewer mathematical parameters, drastically reducing memory consumption
+Answer: B
+
+17. In Natural Language Processing (NLP), what do text "embeddings" practically represent?
+A. The raw alphabetical character strings fed directly into the neural network
+B. The final predicted probability scores outputted by a classification model
+C. Dense numerical vector representations that mathematically capture the semantic meaning of words
+D. The specific mathematical loss gradients computed during backpropagation
+Answer: C
+
+18. Scenario: You are feeding sentences into an RNN, but the input sequences all have varying lengths. How should you format this data for batch processing?
+A. Immediately discard any sequence that does not exactly match the longest sequence
+B. Pad the shorter sequences with a special dummy token (like 0) so all inputs in the batch are the exact same length
+C. Randomly crop all of the longer sequences until they match the length of the shortest sequence
+D. Process each sequence individually using a batch size of exactly 1
+Answer: B
+
+19. Which core mechanism largely replaced traditional recurrence (RNNs) in modern Transformer architectures?
+A. Max-pooling layers
+B. Deep convolutional filters
+C. Self-attention mechanisms
+D. Bidirectional memory gates
+Answer: C
+
+20. What is the fundamental purpose of the "self-attention" mechanism in a Transformer?
+A. It is a mechanism allowing the model to weigh the importance of different words in a sequence relative to each other contextually
+B. It is a technique used exclusively to reduce the spatial dimensions of an image
+C. It is a regularization method that randomly ignores specific inputs during the forward pass
+D. It is an automatic process that completely normalizes the input data to a scale of 0 to 1
+Answer: A
+
+21. Since Transformer architectures process entire sequences simultaneously rather than sequentially, they inherently struggle with word order. What mechanism fixes this?
+A. Applying aggressive dropout to the input layer
+B. Converting the text into 2D matrices and running them through a spatial pooling layer
+C. Padding all input sequences with extra tokens at the very beginning
+D. Injecting positional encodings to give the model context about where each word is located in the sequence
+Answer: D
+
+22. What is the primary purpose of the popular Hugging Face Transformers library? 
+A. It is a dedicated cloud storage provider exclusively for massive image datasets
+B. It is a popular open-source library that provides easy access to thousands of pre-trained foundational AI models
+C. It is a specialized dashboard utilized entirely for visualizing training loss curves
+D. It is a low-level hardware driver designed to automatically optimize GPU tensor calculations
+Answer: B
+
+23. Generative pre-trained transformer models, like the GPT family, are primarily built using which architecture?
+A. Deep Convolutional Neural Networks (CNNs)
+B. Encoder-only Transformer architectures
+C. Decoder-only Transformer architectures
+D. Bidirectional Recurrent Neural Networks (RNNs)
+Answer: C
+
+24. What explicit training problem does the "early stopping" technique actively prevent?
+A. The vanishing gradient problem in deep networks
+B. Overfitting, by halting the training loop when validation performance stops improving
+C. Data leakage between the training and testing datasets
+D. The model from accidentally underfitting a highly complex dataset
+Answer: B
+
+25. Scenario: Your deep learning training loop is running exceptionally slow and consuming massive amounts of GPU memory. What optimization technique can significantly alleviate this?
+A. Switching the optimizer to a standard Stochastic Gradient Descent (SGD) configuration
+B. Utilizing Automatic Mixed Precision (AMP) to perform calculations in 16-bit float instead of 32-bit float
+C. Significantly increasing the batch size to push more data through the GPU memory
+D. Adding more dense, fully connected layers to the end of the network
+Answer: B
+
+26. What is the explicit technical purpose of applying "gradient clipping" during neural network training? 
+A. To randomly drop gradients to zero to prevent complex co-adaptations
+B. To synthetically increase small gradients to combat the vanishing gradient problem
+C. To automatically scale input data so gradients calculate much faster
+D. To cap gradients at a maximum threshold to prevent the exploding gradient problem
+Answer: D
+
+27. In the context of model training libraries, what are "callbacks"?
+A. Specialized mathematical equations used exclusively to compute the final validation loss
+B. Automated hooks (like ModelCheckpoint or EarlyStopping) that execute specific actions at certain stages of the training process
+C. The fundamental algorithms (like Adam or SGD) responsible for actively updating model weights
+D. Raw, unstructured datasets loaded directly into the training loop via API endpoints
+Answer: B
+
+28. When utilizing explainable AI techniques, what specific insight do SHAP values provide to developers? 
+A. The exact mathematical contribution of each individual feature to a specific model prediction
+B. The overall training speed and computational GPU efficiency of the training loop
+C. The total percentage of data lost during the backpropagation step
+D. The optimal hyperparameter configuration required to maximize validation accuracy
+Answer: A
+
+29. Scenario: You have trained two different models. They perform similarly in accuracy, but one model is significantly simpler in its architecture. Which model should you generally choose to deploy?
+A. The more complex model, because it contains more parameters and has higher potential capacity
+B. The simpler model, adhering to Occam's razor, because it is more efficient to run and generally less prone to overfitting
+C. An ensemble of both models, forcing them to randomly alternate predictions
+D. Neither; you should discard both and train a massive transformer model instead
+Answer: B
+
+30. What is the overarching goal of utilizing an algorithm selection framework (like AutoML)?
+A. To systematically evaluate various models and rapidly determine the best-performing architecture for a specific dataset
+B. To drastically reduce the overall physical size of the target dataset before preprocessing begins
+C. To automatically remove highly correlated features from a tabular dataset
+D. To dynamically accelerate the physical hardware training speeds using optimized tensor calculations
+Answer: A

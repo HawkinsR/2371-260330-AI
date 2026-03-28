@@ -1,0 +1,12 @@
+graph TD
+    A[Input Image 3x224x224] --> B[Conv2d: 16x224x224]
+    B --> C[ReLU Activation]
+    C --> D[MaxPool2d: 16x112x112]
+    D --> E[Feature Map Output]
+    
+    subgraph ResNet Intuition
+    E --> F[Conv Layer 1]
+    F --> G[Conv Layer 2]
+    E -.->|Residual / Skip Connection| G
+    G --> H[ReLU]
+    end

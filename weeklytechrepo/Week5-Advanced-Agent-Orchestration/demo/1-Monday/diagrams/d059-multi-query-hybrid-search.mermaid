@@ -1,0 +1,21 @@
+graph TD
+    A[Complex User Query] --> B[Multi-Query LLM]
+    
+    subgraph Query Decomposition
+    B --> C[Sub-query 1]
+    B --> D[Sub-query 2]
+    B --> E[Sub-query 3]
+    end
+    
+    subgraph Hybrid Search Engine
+    C & D & E --> F[Dense Retrieval: Embeddings/Meaning]
+    C & D & E --> G[Sparse Retrieval: BM25/Keywords]
+    end
+    
+    F & G --> H[Aggregate & Deduplicate Documents]
+    
+    H --> I[Cross-Encoder Re-ranker]
+    I -->|Scores Docs against Original Query| J[Top 5 Most Relevant Chunks]
+    
+    J --> K[Final Answer Generation LLM]
+    K --> L[Answer returned to User]

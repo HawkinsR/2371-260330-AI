@@ -1,0 +1,20 @@
+graph TD
+    A[Raw Data in S3] -->|Triggers| B[SageMaker Processing Job]
+    B -->|Preprocessed Data| C[SageMaker Training Job]
+    
+    C -->|model.tar.gz| D[Evaluation Job]
+    D -->|Accuracy Metrics| E{Accuracy > Threshold?}
+    
+    E -->|No| X[Pipeline Fails / Alert Data Scientist]
+    E -->|Yes| F[Register in SageMaker Model Registry]
+    
+    subgraph Model Registry
+    F --> G[Version 1.0: PendingManualApproval]
+    G -.->|Lead Data Scientist Reviews| H[Version 1.0: Approved]
+    end
+    
+    H -->|Triggers CI/CD| I[Deploy to Production Endpoint]
+    
+    J[Production Traffic] --> I
+    I -.->|Monitors| K[Data / Concept Drift Detection]
+    K -.->|Drift Detected| A

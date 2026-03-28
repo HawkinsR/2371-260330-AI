@@ -1,0 +1,19 @@
+graph LR
+    subgraph PyTorch Training Loop
+        A[Forward Pass] --> B[Loss Calculation]
+        B --> C[Metric Calculation: F1/AUC]
+        
+        C -.->| writer.add_scalar | D(SummaryWriter)
+        C -.->| writer.add_figure | D
+    end
+    
+    D -->| Writes to disk: ./runs/ | E[(Log Events Database)]
+    
+    subgraph Browser Frontend
+        F[TensorBoard Server] -->| Reads ./runs/ | E
+        F --> G[Live Dashboard UI]
+    end
+    
+    style D fill:#fff9c4,stroke:#fbc02d
+    style E fill:#eceff1,stroke:#607d8b
+    style G fill:#ffccbc,stroke:#d84315

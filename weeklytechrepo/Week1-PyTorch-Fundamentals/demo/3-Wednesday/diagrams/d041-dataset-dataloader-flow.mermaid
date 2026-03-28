@@ -1,0 +1,21 @@
+graph TD
+    subgraph CustomDataset Class
+        A[Raw Image File / CSV Row] -->|__getitem__| B[Unprocessed Matrix]
+        B -->|Transforms| C[Normalized Tensor]
+    end
+    
+    subgraph DataLoader Class
+        C --> D[Tensor 1]
+        C --> E[Tensor 2]
+        C --> F[Tensor 3]
+        D --> G[Batch Shape: B, C, H, W]
+        E --> G
+        F --> G
+        G -->|Shuffle / Multiprocessing| H[Iterable Batch]
+    end
+    
+    H -.->|Passed to Model| I[Forward Pass]
+    
+    style CustomDataset fill:#e1f5fe,stroke:#01579b
+    style DataLoader fill:#e8f5e9,stroke:#2e7d32
+    style G fill:#ffecb3,stroke:#ff8f00

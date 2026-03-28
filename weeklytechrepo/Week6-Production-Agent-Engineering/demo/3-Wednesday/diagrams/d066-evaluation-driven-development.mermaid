@@ -1,0 +1,17 @@
+graph TD
+    A[New Agent Code / Prompt Change] --> B{Run Test Suite}
+    
+    subgraph Offline Evaluation (EDD)
+    B --> C[Fetch 'Golden Dataset' from LangSmith]
+    C --> D[Run Agent offline across 100 Scenarios]
+    D -.->|Mock out live Web/DB tools| E[Simulated Tool Returns]
+    E --> F[Agent Outputs]
+    
+    F --> G[Custom Evaluators]
+    G -->|Exact Match| H[Scoring]
+    G -->|LLM-as-a-Judge| H
+    end
+    
+    H --> I{Did Aggregate Score Drop?}
+    I -->|Yes - Regression!| J[Revert Prompt / Code Change]
+    I -->|No - Improvement!| K[Deploy to Production]

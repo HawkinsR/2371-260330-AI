@@ -1,0 +1,211 @@
+### Week 1: Machine Learning Fundamentals and PyTorch
+
+1. What is the primary overarching goal of the machine learning lifecycle? 
+A. To automatically generate and label unsupervised datasets
+B. To manually label raw unstructured data for analytics
+C. To build, deploy, and continuously maintain models in production
+D. To continuously compress relational database sizes
+Answer: C
+
+2. In the context of the PyTorch framework, what exactly is a "tensor"?
+A. A multidimensional numerical array optimized for GPU processing
+B. A structured relational database table
+C. A static Python list used to store strings
+D. A pre-trained neural network layer
+Answer: A
+
+3. Which specific PyTorch operation computes the gradients and enables automatic differentiation?
+A. `forward()`
+B. `clone()`
+C. `detach()`
+D. `backward()`
+Answer: D
+
+4. Scenario: You successfully move a data tensor to the GPU, but your neural network model is still residing on the CPU. What happens during training?
+A. The model automatically moves to the GPU to match the data
+B. A runtime device mismatch error occurs and the script crashes
+C. The training process accelerates significantly
+D. The tensor silently falls back to the CPU to continue training
+Answer: B
+
+5. When defining a PyTorch tensor, what does the parameter `requires_grad=True` specifically tell the framework to do?
+A. Track all operations performed on the tensor so gradients can be computed later
+B. Permanently freeze the tensor's weights so they cannot be updated
+C. Automatically normalize the tensor's numerical values between 0 and 1
+D. Move the tensor directly to the GPU's memory cache
+Answer: A
+
+6. Which loss function is the standard choice for evaluating a linear regression model?
+A. Cross-Entropy Loss
+B. KL Divergence
+C. Mean Squared Error (MSE) Loss
+D. Hinge Loss
+Answer: C
+
+7. Scenario: You are monitoring a training loop and notice your model's loss is aggressively jumping around and failing to decrease. What is the MOST likely issue? 
+A. The dataset contains too many engineered features
+B. The learning rate is set too high, causing the optimizer to diverge
+C. The model is aggressively overfitting the validation data
+D. The batch size is significantly too large
+Answer: B
+
+8. What is the fundamental mathematical role of Gradient Descent in machine learning?
+A. To randomly initialize the model's weights before training begins
+B. To automatically select the most optimal neural network architecture
+C. To normalize the input data to prevent vanishing gradients
+D. To iteratively update the model's weights in the direction that minimizes the loss
+Answer: D
+
+9. What happens to the training process if the learning rate is configured extremely low?
+A. The training process suffers from extremely slow convergence, requiring many more epochs
+B. The model diverges and the loss explodes towards infinity
+C. The model immediately overfits the training dataset on the first pass
+D. The optimizer automatically switches to an Adam configuration
+Answer: A
+
+10. What is the primary purpose of utilizing a `DataLoader` in PyTorch?
+A. To permanently store the entire dataset inside the GPU's active memory
+B. To automatically calculate the loss gradients after a forward pass
+C. To efficiently batch, shuffle, and load data into the model during the training loop
+D. To distribute backpropagation calculations across multiple connected GPUs
+Answer: C
+
+11. Scenario: Your classification dataset is heavily imbalanced (e.g., 90% of the data belongs to Class A). What is a standard technique to address this during training?
+A. Ignore the imbalance, as neural networks automatically adjust for skewed data
+B. Remove all samples belonging to the minority class to ensure perfect accuracy
+C. Reduce the total number of features provided in the dataset
+D. Use class weights in the loss function to penalize errors on the minority class more heavily
+Answer: D
+
+12. Why is data normalization (or scaling) a critical preprocessing step for neural networks?
+A. It ensures all input features are on a similar numerical scale, which speeds up training and improves convergence
+B. It reduces the physical storage size of the dataset on the hard drive
+C. It synthetically generates new data points to expand small datasets
+D. It automatically identifies and removes incorrect labels from the dataset
+Answer: A
+
+13. What exactly does the "batch size" hyperparameter control?
+A. The total number of hidden layers inside the neural network architecture
+B. The maximum learning rate allowed by the optimizer during training
+C. The number of data samples processed at one time before the model updates its weights
+D. The total number of complete passes the model will make through the entire dataset
+Answer: C
+
+14. Standard logistic regression relies on which mathematical function to output probabilities?
+A. ReLU (Rectified Linear Unit)
+B. Sigmoid
+C. Tanh (Hyperbolic Tangent)
+D. Softmax
+Answer: B
+
+15. Scenario: A trained binary classification model outputs a value of `0.85` for a specific sample. What does this number represent?
+A. The model has an overall accuracy rating of 85%
+B. The sample currently has an 85% mathematical error rate
+C. The mathematical weight of the most important feature is 0.85
+D. There is an 85% estimated probability that the sample belongs to the positive target class
+Answer: D
+
+16. Which specific loss function is universally standard for binary classification problems?
+A. Binary Cross-Entropy (BCE)
+B. Categorical Cross-Entropy
+C. Mean Absolute Error (MAE)
+D. Huber Loss
+Answer: A
+
+17. What is the fundamental purpose of adding an activation function to a neural network layer?
+A. To reduce the overall dimensionality of the input data
+B. To globally normalize the feature weights before backpropagation begins
+C. To introduce non-linearity, allowing the network to learn complex patterns instead of just linear lines
+D. To compute the final mathematical loss metric for the epoch
+Answer: C
+
+18. Scenario: During testing, your neural network predicts only one specific class for every single input it receives. What is the most likely culprit?
+A. The model has achieved perfect convergence
+B. The model is experiencing severe data imbalance or the learning rate is far too high
+C. The network is experiencing exploding gradients across all hidden layers
+D. The model is aggressively overfitting the minority class
+Answer: B
+
+19. What generally happens when a model's architecture is significantly more complex than the problem requires (e.g., a massive deep neural network for a simple dataset)?
+A. It heavily underfits the training data and produces random predictions
+B. It trains extremely fast because the excess capacity accelerates calculations
+C. It automatically applies regularization to trim the unneeded layers
+D. It memorizes and overfits the training data, failing to generalize to new, unseen data
+Answer: D
+
+20. How does the "dropout" technique help neural networks perform better? 
+A. It randomly disables a percentage of neurons during each training step to prevent complex co-adaptations and overfitting
+B. It permanently removes unimportant features from the raw dataset
+C. It dynamically reduces the learning rate when validation loss plateaus
+D. It adds Gaussian noise to the target labels to confuse the model
+Answer: A
+
+21. What is the specific mathematical purpose of the backpropagation algorithm?
+A. To efficiently load large data batches into the GPU
+B. To automatically normalize the input features before they enter the first hidden layer
+C. To compute the gradients of the loss function with respect to every weight in the network
+D. To randomly shuffle the dataset between training epochs
+Answer: C
+
+22. Scenario: You plot your training metrics and notice the validation loss is steadily increasing while the training loss continues to decrease. What is happening? 
+A. The model is underfitting the data
+B. The model has reached perfect convergence
+C. The validation dataset has accidentally leaked into the training dataset
+D. The model is overfitting the training data and failing to generalize
+Answer: D
+
+23. During a standard PyTorch training loop, what action does `optimizer.step()` perform?
+A. It actively updates the model's weights based on the previously computed gradients
+B. It calculates the partial derivatives for the current batch
+C. It clears out and resets the gradients from the previous batch
+D. It loads the next batch of data into the active memory
+Answer: A
+
+24. Why do ML engineers frequently implement learning rate schedulers?
+A. To automatically increase the batch size over time
+B. To safely normalize the computed gradients before applying them
+C. To dynamically adjust and typically decay the learning rate during training to help the model settle into the global minimum
+D. To randomly drop out neurons during the later epochs
+Answer: C
+
+25. In the context of evaluation metrics, what exactly does "Precision" measure?
+A. The proportion of actual positives that were correctly identified by the model
+B. The proportion of correct positive predictions out of all predicted positives
+C. The overall ratio of correct predictions across all classes combined
+D. The mathematical inverse of the model's recall score
+Answer: B
+
+26. In the context of evaluation metrics, what exactly does "Recall" measure?
+A. The proportion of actual positive cases that the model successfully identified
+B. The total number of positive predictions made by the model
+C. The overall ratio of accurate predictions compared to the baseline
+D. The total number of false positives divided by true negatives
+Answer: A
+
+27. Scenario: A hospital is deploying an ML model to screen for a highly contagious, critical disease. Sending a sick patient home undiagnosed carries catastrophic consequences. Which metric is the most important to optimize? 
+A. Precision
+B. Overall Accuracy
+C. F1 Score
+D. Recall
+Answer: D
+
+28. What does the ROC-AUC score represent when evaluating a classification model?
+A. The raw computational speed of the training loop
+B. The total size and balance of the testing dataset
+C. The model's overarching ability to successfully distinguish between the positive and negative classes across various thresholds
+D. The absolute numerical difference between the final training and validation loss
+Answer: C
+
+29. A confusion matrix is highly useful because it explicitly visualizes:
+A. A detailed breakdown of the true positive, false positive, true negative, and false negative classification outcomes
+B. The progressive loss values over each epoch
+C. The execution time required for each individual training batch
+D. The specific feature weights assigned by the model's layers
+Answer: A
+
+30. What is the primary purpose of integrating TensorBoard into a machine learning project?
+A. Deploying finished models directly to production cloud servers
+B. Automatically preprocessing unstructured image datasets
+C. Writing and debugging custom Python training scripts interactively
+D. Visually tracking, charting, and comparing training metrics like loss and accuracy over time
+Answer: D

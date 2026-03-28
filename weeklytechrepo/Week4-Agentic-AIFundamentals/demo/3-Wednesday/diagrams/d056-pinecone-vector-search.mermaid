@@ -1,0 +1,17 @@
+graph TD
+    subgraph Data Ingestion (Upsert)
+    A[Raw Text Document] --> B[Embedding Model]
+    B -->|Translates to 1536-dim Vector| C[{Vector + Metadata JSON}]
+    C -->|Upsert API| D[(Pinecone Database)]
+    end
+    
+    subgraph Retrieval (Query)
+    E[User Question] --> F[Embedding Model]
+    F -->|Translates to 1536-dim Vector| G[Query Vector]
+    G -->|Cosine Similarity Search + Metadata Filter| D
+    D -->|Returns Top-K Matches| H[Relevant Context]
+    end
+    
+    %% Styling
+    classDef db fill:#f9f,stroke:#333,stroke-width:2px;
+    class D db;

@@ -1,4 +1,4 @@
-# Demo: Self-Correction and Plan and Execute
+# Demo: Evaluation Driven Development — Unit Testing & Mocking
 
 ## Discussion Topics
 
@@ -21,12 +21,11 @@ Use these prompts to check student understanding before diving into the demo. Gi
 
 ## Phase 2: The Code (Live Implementation)
 **Time:** 20 mins
-1. Open `code/d065-iterative-refinement-agent.py`.
-2. Review the `Evaluator Node`. 
-   - Point out the strict rules (length > 15, must contain "persistent state"). Explain that in production, this node is usually an LLM Prompt tasked explicitly with finding flaws, rather than hardcoded Python strings. Let the LLM critique the LLM.
-3. Review the `should_continue` routing logic. Show how it parses the `is_perfect` boolean returned by the Evaluator, mapping `"continue"` backward to the Generator and `"end"` to the `END` boundary.
-4. Execute the script via `demonstrate_self_correction()`. 
-5. Walk the class through the verbose terminal trace. Watch how the Initial Draft is generated, fails Rule 1, gets rewritten, fails Rule 2, gets rewritten again, and finally passes.
+1. Open `code/d065-unit-testing-and-mocking.py`.
+2. Review the `@tool` definition (`fetch_database_records`). Explain that in production, this would be a real, expensive external API call.
+3. Review the `TestAgentPipeline` test class. Show how `@patch('__main__.fetch_database_records.invoke')` intercepts the tool call before it ever hits the network.
+4. Execute the script. The `unittest.TextTestRunner` will run the test suite.
+5. Walk the class through the output. The agent made a tool call, but instead of the real database, it received our mock data — proving the graph routes correctly without incurring cost.
 
 ## Summary
-Reiterate that separating the roles of "Generator" and "Editor" dramatically reduces hallucinations and format errors, converting erratic AI outputs into reliable engineering pipelines.
+Reiterate that mocking tools and running unit tests against Golden Datasets is how production teams ensure agent reliability without burning API budgets during CI/CD.

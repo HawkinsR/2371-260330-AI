@@ -1,4 +1,4 @@
-# Demo: Persistent Memory and Checkpointers
+# Demo: Advanced Agentic Design Patterns & Async
 
 ## Discussion Topics
 
@@ -22,14 +22,14 @@ Use these prompts to check student understanding before diving into the demo. Gi
 
 ## Phase 2: The Code (Live Implementation)
 **Time:** 20 mins
-1. Open `code/d064-cross-thread-memory-store.py`.
-2. Walk through the `greeting_and_memory_node` function.
+1. Open `code/d064-advanced-patterns-and-async.py`.
+2. Walk through the `planner_node` function.
    - Show how the `store: InMemoryStore` is injected directly into the function signature.
    - Highlight the Namespace logic: `("user_preferences", user_id)`. This prevents Alice from accidentally reading Bob's preferences!
 3. Review the `build_graph()` function to explicitly show the `checkpointer` and `store` being passed into `.compile()`.
-4. Execute the script via `demonstrate_memory_systems()`. 
-5. The terminal output is split into 3 Scenarios. Walk the students through Scenario 3 carefully:
-   - "Look at Thread B. The `messages` array only has 1 message in it. The Checkpointer memory is blank because it's a new thread. BUT, the agent still responded with a `[FORMAL TONE]`. Why? Because the `user_id` allowed it to query the Global Store across threads."
+4. Execute the script via `asyncio.run(main())`. 
+5. Walk the students through the async streaming output carefully:
+   - "Notice how the Store injected the verbosity preference into the planner prompt. The Checkpointer tracks the thread conversation, but the Store preference persists across ALL threads. Also note we used `.astream()` instead of `.stream()` — this is the async pattern required for production throughput."
 
 ## Summary
 Reiterate that separating conversational state from persistent user state is the foundational architecture required to build intelligent, personalized AI products rather than simple stateless chatbots.

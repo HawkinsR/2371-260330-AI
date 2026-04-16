@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import random
 import numpy as np
+import copy
 
 def set_seed(seed=42):
     random.seed(seed)
@@ -14,18 +15,23 @@ class EarlyStopping:
         self.counter = 0
         self.best_loss = None
         self.early_stop = False
+        self.best_weights = None  # Will store a deep copy of the best model state_dict
 
-    def __call__(self, val_loss):
+    def __call__(self, val_loss, model):
         if self.best_loss is None:
             self.best_loss = val_loss
-        elif val_loss > self.best_loss:
+            # Save the initial weights as the first 'best'
+            self.best_weights = copy.deepcopy(model.state_dict())
+        elif val_loss < self.best_loss:
+            # Validation loss improved — save new best weights and reset counter
+            self.best_loss = val_loss
+            self.best_weights = copy.deepcopy(model.state_dict())
+            self.counter = 0
+        else:
             self.counter += 1
             print(f"EarlyStopping counter: {self.counter} out of {self.patience}")
             if self.counter >= self.patience:
                 self.early_stop = True
-        else:
-            self.best_loss = val_loss
-            self.counter = 0
 
 def robust_training_loop():
     set_seed(42)
@@ -72,7 +78,8 @@ def robust_training_loop():
             
         print(f"  -> Validation Loss: {val_loss:.4f}")
         
-        # 3. TODO: Pass the val_loss to the early_stopper
+        # 3. TODO: Pass the val_loss AND the model to the early_stopper
+        # (The updated EarlyStopping class needs the model to save its weights)
         
         
         # 4. TODO: Check if early_stopper.early_stop is True. If so break the loop.
@@ -80,6 +87,13 @@ def robust_training_loop():
         
         
     print("-" * 50)
+    
+    # 5. TODO: Restore the best model weights after the loop completes.
+    # Use: model.load_state_dict(early_stopper.best_weights)
+    # This ensures the model is in its best-performing state, not the final (overfit) state.
+    
+    
+    print("Training complete. Model restored to best checkpoint.")
 
 if __name__ == "__main__":
     robust_training_loop()

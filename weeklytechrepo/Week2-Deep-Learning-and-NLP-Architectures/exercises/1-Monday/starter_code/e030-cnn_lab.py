@@ -64,7 +64,10 @@ def test_forward_pass():
     output = None
     
     # 4. Print the final shape
-    print(f"Output Shape: {output.shape} (Expected: torch.Size([4, 2]))")
+    if output is not None:
+        print(f"Output Shape: {output.shape} (Expected: torch.Size([4, 2]))")
+    else:
+        print("Output is None — did you complete all the TODOs in the forward pass?")
 
 if __name__ == "__main__":
     test_forward_pass()

@@ -7,14 +7,17 @@ Your team has been given a volatile deep learning model that frequently crashes 
 
 1. Navigate to the `starter_code/` directory.
 2. Open `e034-training_mechanics_lab.py`.
-3. Read the custom `EarlyStopping` class provided for you. Understand how the `__call__` method tracking `val_loss` works.
-4. Complete the the `robust_training_loop` function:
+3. Read the custom `EarlyStopping` class provided for you. Notice it now accepts **both** `val_loss` and the `model` as arguments so it can save a copy of the best weights when validation improves.
+4. Complete the `robust_training_loop` function:
    - Initialize the `EarlyStopping` callback with a `patience` of 3.
-   - Inside the training loop batch logic, immediately after `loss.backward()`, use `torch.nn.utils.clip_grad_norm_` to clip the gradients of `model.parameters()` to a `max_norm` of `1.0`. 
-   - After the optimizer steps, and after you calculate the `val_loss`, pass the `val_loss` to your initialized `early_stopping` object.
+   - Inside the training loop batch logic, immediately after `loss.backward()`, use `torch.nn.utils.clip_grad_norm_` to clip the gradients of `model.parameters()` to a `max_norm` of `1.0`.
+   - After the optimizer steps, and after you calculate the `val_loss`, pass **both** `val_loss` and `model` to your `early_stopping` object: `early_stopping(val_loss, model)`.
    - Check the `early_stop` boolean attribute on your callback object. If `True`, print a warning and `break` out of the epoch loop to stop training.
+5. After the training loop, restore the best model weights:
+   - Call `model.load_state_dict(early_stopper.best_weights)` to rewind the model back to the checkpoint that had the lowest validation loss, discarding any weights learned during the overfitting phase.
 
 ## Definition of Done
 - The script executes successfully.
-- Training automatically halts completely before Epoch 15 is reached (simulated early stopping triggers around Epoch 7 or 8).
-- The text "Early stopping triggered! Training halted to prevent overfitting" is printed to the console.
+- Training automatically halts at **Epoch 8** (the simulated val_loss rises for 3 consecutive epochs starting at Epoch 6, triggering the patience counter).
+- The text `"Early stopping triggered! Training halted to prevent overfitting"` is printed to the console.
+- The final line printed is `"Training complete. Model restored to best checkpoint."`, confirming the weight restoration step ran.

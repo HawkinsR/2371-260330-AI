@@ -1,0 +1,18 @@
+graph TD
+    Query[User Query] --> Embed[Embedding Model]
+    Embed --> PV[Pinecone Search<br/>Recall Top-K]
+    PV -->|Candidate Docs| RR[Cohere Rerank<br/>Precision Scoring]
+    RR -->|Re-ordered Top-3| Judge[Context Pruning]
+    Judge -->|Final Context| LLM[Bedrock Model]
+    
+    subgraph "Phase 1: Recall"
+    PV
+    end
+    
+    subgraph "Phase 2: Rerank"
+    RR
+    end
+    
+    subgraph "Phase 3: Generation"
+    LLM
+    end

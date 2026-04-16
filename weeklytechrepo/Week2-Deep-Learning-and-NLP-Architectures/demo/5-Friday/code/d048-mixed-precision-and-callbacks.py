@@ -138,5 +138,76 @@ def demonstrate_advanced_mechanics():
             
     print("-" * 50)
 
+def demonstrate_shap_explainability():
+    """
+    Demo: Model Explainability with SHAP
+    Shows how to use SHAP's DeepExplainer to compute feature-level attribution
+    scores for a PyTorch model's predictions — answering WHY the model
+    made each decision, not just WHAT it predicted.
+    """
+    print("\n--- SHAP Explainability Demo ---")
+
+    try:
+        import shap
+        import numpy as np
+    except ImportError:
+        print("[SKIP] SHAP not installed. Run: pip install shap")
+        print("This section explains WHY a model makes predictions using feature attribution.")
+        return
+
+    # Build the same simple model architecture used in the training demo
+    device = 'cpu'  # SHAP DeepExplainer runs on CPU
+    model = nn.Sequential(
+        nn.Linear(20, 50),
+        nn.ReLU(),
+        nn.Linear(50, 2)
+    ).to(device)
+    model.eval()
+
+    # --- Background Data ---
+    # SHAP computes attributions relative to a *baseline* (background).
+    # The background represents "average" or "uninformative" input.
+    # Using real training samples as background gives the most meaningful attributions.
+    set_seed(42)
+    background = torch.randn(100, 20)   # 100 background samples
+    test_input  = torch.randn(5, 20)    # 5 new samples we want explained
+
+    print(f"Background samples : {background.shape}  (used to compute baseline prediction)")
+    print(f"Test samples       : {test_input.shape}  (samples to explain)")
+
+    # --- SHAP DeepExplainer ---
+    # DeepExplainer is optimised for PyTorch / TensorFlow deep learning models.
+    # It uses a gradient-based approximation of Shapley values (game theory).
+    explainer   = shap.DeepExplainer(model, background)
+    shap_values = explainer.shap_values(test_input)
+
+    # shap_values is a list: one array per output class.
+    # Each array has shape [num_test_samples, num_features].
+    print(f"\nSHAP values computed: {len(shap_values)} arrays (one per class)")
+    print(f"Shape per class: {shap_values[0].shape}  [samples, features]")
+
+    # --- Feature Importance ---
+    # The mean absolute SHAP value across test samples shows which INPUT FEATURES
+    # most strongly pushed the model's prediction away from the baseline.
+    import numpy as np
+    for class_idx, label in enumerate(['Class 0 (Negative)', 'Class 1 (Positive)']):
+        mean_abs_shap = np.abs(shap_values[class_idx]).mean(axis=0)  # [20,]
+        top5 = np.argsort(mean_abs_shap)[::-1][:5]
+
+        print(f"\nTop 5 features for {label}:")
+        print(f"  {'Rank':<6} {'Feature':<12} {'Mean |SHAP|':<14} Interpretation")
+        print(f"  {'-'*55}")
+        for rank, feat_idx in enumerate(top5, 1):
+            importance = mean_abs_shap[feat_idx]
+            direction = "pushes UP" if shap_values[class_idx][:, feat_idx].mean() > 0 else "pushes DOWN"
+            print(f"  #{rank:<5} Feature {feat_idx:02d}   {importance:.4f}         {direction} predictions")
+
+    print("\nKey Insight: SHAP values are *additive* — they sum to the difference")
+    print("between the model's prediction for this sample and the average baseline.")
+    print("This satisfies the legal and ethical requirement for *explainable AI*.")
+    print("-" * 50)
+
+
 if __name__ == "__main__":
     demonstrate_advanced_mechanics()
+    demonstrate_shap_explainability()

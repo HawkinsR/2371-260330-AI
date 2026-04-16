@@ -29,6 +29,11 @@ Use these prompts to check student understanding before diving into the demo. Gi
    - Show where `clip_grad_norm_` is applied explicitly before the optimizer steps.
 5. Execute the script. 
 6. Watch the terminal output. Point out when the validation loss begins to "degrade" and the `EarlyStopping counter` kicks in until the script halts.
+7. Walk through `demonstrate_shap_explainability()`:
+   - Explain the **SHAP background dataset**: *"SHAP needs to know what an 'average' prediction looks like — that's the baseline. Every attribution is computed relative to it."*
+   - Highlight the `shap.DeepExplainer(model, background)` line. Explain that `DeepExplainer` is tailored for deep learning models (PyTorch/TensorFlow) and uses a fast gradient-based approximation of Shapley values from cooperative game theory.
+   - Show the ranked feature importance table in the output. Ask the class: *"If Feature 07 has the highest Mean |SHAP|, what does that tell a business analyst who needs to explain why a loan was rejected?"*
+   - *Note: Point out the `try/except` import guard. In production, if `shap` isn't installed the script degrades gracefully with a clear install message — this is the defensive coding pattern we expect in enterprise-grade code.*
 
 ## Summary
-Reiterate that mastering these robust, defensive mechanics marks the transition from amateur scripting to professional, production-level Deep Learning engineering.
+Reiterate that mastering these defensive mechanics — reproducibility, AMP, gradient clipping, early stopping, and explainability — marks the transition from amateur scripting to professional, production-level Deep Learning engineering. SHAP in particular bridges the gap between a model's internal math and the legal, ethical, and business requirement to justify AI-driven decisions to real stakeholders.

@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  LangGraph API Deployment
+  An AWS Lambda function implementing a LangGraph agent exposed via API Gateway.
+
+Resources:
+  LangGraphAgentFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: app.lambda_handler
+      Runtime: python3.11
+      Timeout: 30
+      MemorySize: 256
+      Environment:
+        Variables:
+          PYTHONPATH: /var/task
+      # Required IAM permissions for the Lambda to invoke AWS Bedrock Models
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+              Resource: '*'
+      Events:
+        AgentApi:
+          Type: Api
+          Properties:
+            Path: /chat
+            Method: post
+
+Outputs:
+  AgentApiUrl:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/chat"

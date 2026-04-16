@@ -106,6 +106,9 @@ A **Multi-Layer Perceptron (MLP)** is the most basic feed-forward neural network
 * **Hidden Layers:** Intermediate layers where the network extracts complex patterns.
 * **Output Layer:** Produces the final prediction.
 
+> [!WARNING]
+> **A Common Misconception:** In frameworks like PyTorch, calculating the weighted sum and applying the activation function are usually split into two separate code steps (e.g., passing data through a `Linear` layer to get the sum, and *then* passing it through a `ReLU` layer). Developers do not *swap* a linear layer for an activation function; they **stack** them. The linear layer holds the weights/parameters, and the activation function applies the curve to the output.
+
 ### Activation Functions: Adding Non-Linearity
 
 If we just chained weighted sums together, the entire network would collapse into a single giant linear equation; it could only model straight lines. **Activation Functions** apply non-linear mathematical transformations to a neuron's output so the network can learn curves and complex shapes.

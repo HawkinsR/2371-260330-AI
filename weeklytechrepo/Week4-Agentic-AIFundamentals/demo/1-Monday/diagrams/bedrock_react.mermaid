@@ -1,0 +1,14 @@
+graph TD
+    User((User)) -->|Input| Router[LangGraph Agent]
+    Router -->|Reasoning| LLM[Amazon Bedrock<br/>Claude 3.5 Sonnet]
+    LLM -->|Tool Call| Tool{Financial Tool}
+    Tool -->|Observation| Router
+    Router -->|Final Answer| User
+    
+    subgraph "Bedrock Runtime"
+    LLM
+    end
+    
+    subgraph "Tools"
+    Tool
+    end

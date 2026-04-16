@@ -1,0 +1,9 @@
+# Week 4: Agentic AI Fundamentals - Requirements
+
+pydantic>=2.0.0
+pinecone-client>=3.0.0
+cohere>=4.0.0
+langchain>=0.1.0
+langsmith>=0.1.0
+ragas>=0.1.0
+python-dotenv>=1.0.0

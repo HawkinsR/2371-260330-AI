@@ -1,0 +1,14 @@
+graph TD
+    User((User)) -->|Query| Supervisor[Supervisor Agent<br/>Bedrock Claude]
+    Supervisor -->|Delegate: Research| RA[Research Agent<br/>Tool: Web Search]
+    Supervisor -->|Delegate: Finance| FA[Finance Agent<br/>Tool: Stock API]
+    RA -->|Report| Supervisor
+    FA -->|Report| Supervisor
+    Supervisor -->|Requires Approval| HITL{{"Human-in-the-loop<br/>Interrupt"}}
+    HITL -->|Approved| Supervisor
+    Supervisor -->|Final Response| User
+
+    subgraph "Worker Agents"
+    RA
+    FA
+    end

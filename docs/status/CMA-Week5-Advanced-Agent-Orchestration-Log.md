@@ -1,71 +1,51 @@
 # Weekly Epic: Upgrade AI reasoning logic by integrating LangGraph workflows, routing conditional logic, and employing multi-agent architectures
 
 ## 1-Monday
-
 ### Written Content
-
-- [x] Create `c261-advanced-retrieval-and-evaluation.md`: Advanced Retrieval Patterns, Query Decomposition & Multi-Query Retriever Pattern, Self-Querying & Metadata Construction, NER for Metadata Extraction, Hybrid Search (Sparse + Dense), Re-ranking Retrieved Results, Retrieval Evaluation, RAG Evaluation with RAGAS, Context Precision & Recall.
+- [ ] Create `c261-semantic-search-and-metadata.md`: LangSmith Documentation, Vector Query with Semantic Search, Named Entity Recognition (NER), Vector Embedding in Batches, Querying the Index and Namespace, Performance Optimization, Metadata Filtering, Backup and Collections Overview.
 
 ### Instructor Demo
-
-- [x] Create `d059-multi-query-and-hybrid-search.py`: Configure sparse/dense hybrid searches coupled with a multi-query retriever and apply basic RAGAS evaluation over precision.
+- [ ] Create `d059-vector-search-and-metadata.py`: Demonstrate Vector Embedding in Batches, semantic search, and metadata filtering.
 
 ### Trainee Exercise
-
-- [x] Create `e045-evaluating-rag-with-ragas.md`: Break down queries via decomposition logic, evaluate context recall using RAGAS mechanisms, and apply simple reranking.
+- [ ] Create `e045-querying-index-and-namespace.md`: Query the Index and Namespace context using semantic search and refer to LangSmith Documentation for observability.
 
 ## 2-Tuesday
-
 ### Written Content
-
-- [x] Create `c262-langgraph-state-and-routing.md`: `StateGraph` vs `create_agent`, Defining Graph State (`TypedDict`), Nodes & Edges Basics, Conditional Edges & Routing, Compiling the Graph, LangSmith Studio Prototyping, Handling Graph Errors.
+- [ ] Create `c262-langgraph-fundamentals.md`: Introduction to LangGraph, Agents as Graphs Overview, LangChain vs LangGraph, Nodes, Edges, Graphs, Graph Errors, `StateGraph` vs `create_agent`, `TypedDict` State, Memory, Persistence, Conditional Edges, Binding the tools, Streaming, Command for State Updates, LangGraph Introduction Overview.
 
 ### Instructor Demo
-
-- [x] Create `d060-stategraph-compilation.py`: Differentiate LangChain and LangGraph by creating an explicit `TypedDict` state, connecting distinct nodes via static and conditional routing edges.
+- [ ] Create `d060-stategraph-foundations.py`: Build a Basic LangGraph Agent, configure nodes and edges, bind tools, and demonstrate memory and persistence.
 
 ### Trainee Exercise
-
-- [x] Create `e046-conditional-routing-graph.md`: Map an acyclic condition tree to direct inputs depending on graph-level heuristics using a freshly compiled `StateGraph`.
+- [ ] Create `e046-langgraph-agents-task.md`: Build a functional `StateGraph` using conditional edges that saves state across sessions and uses `Command` for mid-run state updates.
 
 ## 3-Wednesday
-
 ### Written Content
-
-- [x] Create `c263-runtime-configuration-and-middleware.md`: Runtime Configuration (`configurable`), Passing State to Tools (`ToolRuntime`), Middleware Patterns (`@wrap_model_call`), Managing Conversation History, Trimming Messages for Context, Shared State across Nodes.
+- [ ] Create `c263-orchestration-and-hand-off-patterns.md`: Routing/Aggregating/Handoff Patterns, Supervisor, Sub-Agent Interfaces, Orchestrator-Workers Architecture.
 
 ### Instructor Demo
-
-- [x] Create `d061-toolruntime-and-state-management.py`: Handle internal tool runtime contexts and trim older conversational messages before routing them dynamically across parallel nodes.
+- [ ] Create `d061-supervisor-pattern-implementation.py`: Build a Supervisor graph that routes tasks to specialized sub-agents and aggregates their terminal state.
 
 ### Trainee Exercise
-
-- [x] Create `e047-managing-conversation-history.md`: Design configurable global state wrappers adjusting token context window footprints using recursive message trimming heuristics.
+- [ ] Create `e047-multi-agent-system-handoffs.md`: Build a Multi-Agent RAG System where a "Search" agent hands off findings to an "Analyst" agent for synthesis.
 
 ## 4-Thursday
-
 ### Written Content
-
-- [x] Create `c264-orchestrator-workers-architecture.md`: Orchestrator-Workers Architecture, Defining Sub-Agent Interfaces, Routing Tasks to Sub-Agents, Aggregating Sub-Agent Outputs, Handoffs between Agents, Managing Sub-Agent Context, Supervisor Implementation.
+- [ ] Create `c264-advanced-rag-loops-and-hitl.md`: Advanced RAG Agents (Agentic, Adaptive, Corrective and Self-RAG), Human in the loop, Editing State, Time Travel, Approval Workflows.
 
 ### Instructor Demo
-
-- [x] Create `d062-supervisor-agent-implementation.py`: Formulate an orchestrator layer that accepts generalized instructions, routes them intelligently to specialized worker sub-agents, and aggregates final states.
+- [ ] Create `d062-self-rag-and-hitl.py`: Demonstrate a Self-RAG loop and triggering an interrupt for manual human approval (HITL) and Time Travel.
 
 ### Trainee Exercise
-
-- [x] Create `e048-routing-tasks-to-sub-agents.md`: Develop separate agent logic blocks and unify them under an overarching Supervisor script performing multi-agent sub-routing computations.
+- [ ] Create `e048-adaptive-rag-orchestration.md`: Implement an Adaptive RAG workflow that incorporates Approval Workflows and Editing State on the fly.
 
 ## 5-Friday
-
 ### Written Content
-
-- [x] Create `c265-breakpoints-and-time-travel.md`: Breakpoints & `interrupt`, `Command` for State Updates, Time Travel (Rewinding/Forking), Approval Workflows, Editing State on the Fly, Streaming Events during Interruption.
+- [ ] Create `c265-production-deployment.md`: Deployment Options, LangGraph Platform Overview.
 
 ### Instructor Demo
-
-- [x] Create `d063-graph-interrupts-and-state-editing.py`: Trigger graph breakpoints mid-execution to intercept tool payloads, edit dynamic variables live, and implement manual approval workflows.
+- [ ] Create `d063-lambda-api-gateway/` folder containing `app.py` (Lambda handler), `template.yaml` (SAM IaC), and `deploy.sh` (deployment script): Demonstrate deploying a LangGraph agent workflow to AWS Lambda via API Gateway using AWS SAM.
 
 ### Trainee Exercise
-
-- [x] Create `e049-approval-workflow-implementation.md`: Fork historical run states asynchronously to execute "time-travel" functionality and test manual Human-in-the-Loop interruptions.
+- [ ] Create `e049-langgraph-deployment-task.md`: LangGraph Deployment Task.

@@ -1,0 +1,14 @@
+graph LR
+    User((User)) -->|Input| PII[PII Masking<br/>Middleware]
+    PII -->|Safe Text| LLM[Bedrock Model]
+    LLM -->|State Update| DB[(SqliteSaver<br/>Checkpointer)]
+    DB -->|Persisted State| Router[Agent Logic]
+    Router -->|Response| User
+    
+    subgraph "Middleware Layer"
+    PII
+    end
+    
+    subgraph "Persistence Layer"
+    DB
+    end

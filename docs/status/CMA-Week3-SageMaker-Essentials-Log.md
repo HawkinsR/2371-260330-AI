@@ -4,68 +4,73 @@
 
 ### Written Content
 
-- [x] Create `c251-sagemaker-ecosystem-and-script-mode.md`: SageMaker Ecosystem & Lifecycle, IAM best practices, BYOM/BYOS & Script Mode Patterns, Script Mode Interface, Connecting Local Code to Cloud, Estimator vs Processor Concepts.
+- [ ] Create `c251-sagemaker-ecosystem-and-setup.md`: SageMaker Ecosystem & Lifecycle, IAM best practices, Studio Domains & Profiles, JumpStart Pre-built Models.
+- [ ] Create `c251b-prompting-paradigms-part-1.md`: Zero-Shot & Few-Shot Prompting, Chain of Thought & Tree of Thought, Graph of Thought & Dialog State, Curating Responses & Prompt Design.
 
 ### Instructor Demo
 
-- [x] Create `d049-sagemaker-script-mode-setup.py`: Prepare a local entry point python script for SageMaker script mode and configure the associated AWS IAM roles.
+- [ ] Create `d049-sagemaker-studio-and-jumpstart.py`: Configure a SageMaker Studio domain and demonstrate deploying a pre-built model via JumpStart.
 
 ### Trainee Exercise
 
-- [x] Create `e035-local-to-cloud-script.md`: Convert an existing PyTorch script into an execution-ready Script Mode file passing appropriate system variables.
+- [ ] Create `e035-exploring-sagemaker-studio.md`: Set up an IAM execution role, create a Studio profile, and perform basic prompt engineering tests in a JumpStart notebook.
 
 ## 2-Tuesday
 
 ### Written Content
 
-- [x] Create `c252-sagemaker-estimators-and-training.md`: SageMaker Estimators, Adapting PyTorch Scripts for Cloud, The `Estimator` Class & SDK, Passing Hyperparameters & Metrics, Handling Dependencies (`requirements.txt`), Launching Training Jobs.
+- [ ] Create `c252-advanced-prompting-and-script-mode.md`: Input Validation and Sanitation, Chain of Verification & ReAct Prompting, Preventing Hallucinations & Parameterization, BYOM/BYOS & Script Mode Patterns, Estimators & Configurations, Launching Training Jobs.
 
 ### Instructor Demo
 
-- [x] Create `d050-launching-custom-estimators.py`: Trigger a remote asynchronous training job using the PyTorch Estimator SDK, passing hyper-parameters and dependencies.
+- [ ] Create `d050-advanced-prompting-and-estimations.py`: Prepare a ReAct-style prompt and launch a SageMaker training job using the PyTorch Estimator SDK.
 
 ### Trainee Exercise
 
-- [x] Create `e036-sagemaker-training-job.md`: Configure dependency injection requirements, map metric definitions, and successfully launch the SageMaker training run.
+- [ ] Create `e036-re-act-and-estimators.md`: Implement a ReAct prompt sequence and successfully launch a custom training run from a local script.
 
 ## 3-Wednesday
 
 ### Written Content
 
-- [x] Create `c253-model-packaging-and-inference.md`: Model Artifacts & Inference, `model.tar.gz` Structure & Packaging, Creating `inference.py` Entry Point, `model_fn` (Loading Logic), `predict_fn` (Inference Logic), Testing Inference Capabilities.
+- [ ] Create `c253-lifecycle-and-mlops-pipelines.md`: Model Artifacts & S3 Storage, `model.tar.gz` Structure & Packaging, Pipelines, DAGs & Versioning, MLOps & CI/CD Principles, Introduction to Model Registry.
 
 ### Instructor Demo
 
-- [x] Create `d051-custom-inference-script.py`: Package the `state_dict` into a `model.tar.gz` and write `model_fn` and `predict_fn` inference scripts.
+- [ ] Create `d051-mlops-pipeline-packaging.py`: Package a model artifact and register it in a SageMaker Pipeline or Model Registry.
 
 ### Trainee Exercise
 
-- [x] Create `e037-deploying-model-tarball.md`: Package a trained artifact and write a reliable `inference.py` with custom parsing logic prior to cloud tests.
+- [ ] Create `e037-automating-the-ml-lifecycle.md`: Create a basic SageMaker Pipeline to automate step-wise execution from packaging to registration.
 
 ## 4-Thursday
 
 ### Written Content
 
-- [x] Create `c254-sagemaker-endpoints-and-scaling.md`: Deployment Essentials, Real-time Endpoints architecture, Instance selection: CPU vs GPU vs Inferentia, Auto-scaling configuration, Updating & Rolling Back Endpoints, Cost Optimization Basics.
+- [ ] Create `c254-deployment-and-inference-scripts.md`: Real-time Inference Endpoints, Instance Selection, `model_fn` & `predict_fn` Logic, Auto-scaling Configuration, Approval Workflows & Versioning.
 
 ### Instructor Demo
 
-- [x] Create `d052-endpoint-deployment-and-update.py`: Deploy a real-time endpoint based on the trained artifact, invoking the endpoint for payload inference.
+- [ ] Create `d052-serving-and-inference.py`: Write an `inference.py` and deploy it to a real-time endpoint, testing request/response cycles.
 
 ### Trainee Exercise
 
-- [x] Create `e038-managing-realtime-endpoints.md`: Launch a persistent endpoint with auto-scaling bounds, test real-time latencies, and tear down the endpoint securely.
+- [ ] Create `e038-deploying-custom-inference.md`: Deploy a persistent endpoint with custom `inference.py` logic, test latency, and tear down securely.
 
 ## 5-Friday
 
 ### Written Content
 
-- [x] Create `c255-mlops-and-model-registry.md`: Production Basics, Introduction to MLOps principles, CI/CD for ML pipelines, Model decay and drift concepts, SageMaker Model Registry, Approval workflows, Moving from Notebook to Pipeline, AWS Bedrock Orientation (Foundation Models).
+- [ ] Create `c255-admin-bedrock-and-costs.md`: AWS Bedrock Orientation, Runtime API & Inference Parameters, API Quotas & Handling Throttling, CloudWatch Monitoring & Guardrails, CLI/Boto3 SDK Setup, Cost Management & Policies.
 
 ### Instructor Demo
 
-- [x] Create `d053-sagemaker-mlops-pipeline.py`: Showcase registering a newly trained model within the SageMaker Model Registry, checking status and basic Bedrock access.
+- [ ] Create `d053-boto3-bedrock-and-costs.py`: Access Bedrock via Boto3 and demonstrate cost-tracking tags or CloudWatch metric pulls.
 
 ### Trainee Exercise
 
-- [x] Create `e039-model-registry-workflow.md`: Version control an active model into the SageMaker Registry, transition it to Approved status, and explore basic MLOps drift logic.
+- [ ] Create `e039-enterprise-admin-tasks.md`: Configure Boto3 credentials, monitor endpoint usage in CloudWatch, and analyze cost projection via SageMaker Cost Explorer.
+
+## Project 3: SecureContent AI
+
+- [ ] Create `p3-secure-content-ai.md`: Multi-modal audit pipeline combining custom PyTorch CNNs with ReAct prompting and FastAPI integration.

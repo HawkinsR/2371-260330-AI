@@ -1,0 +1,28 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: LangGraph Agent API (Solution)
+
+Resources:
+  AgentFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: ./
+      Handler: app.lambda_handler
+      # SOLUTION 1: Python Runtime
+      Runtime: python3.11
+      Timeout: 30
+      
+      # SOLUTION 2: Bedrock IAM Access
+      Policies:
+        - Statement:
+            - Effect: Allow
+              Action:
+                - bedrock:InvokeModel
+              Resource: '*'
+              
+      Events:
+        ApiEvent:
+          Type: Api
+          Properties:
+            Path: /chat
+            Method: post

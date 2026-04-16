@@ -1,71 +1,71 @@
 # Weekly Epic: Enter the GenAI era by orchestrating basic reasoning agents and integrating powerful Retrieval Augmented Generation (RAG) capabilities
 
-## 1-Monday
+## 1-Monday: LangChain Foundations
 
 ### Written Content
 
-- [x] Create `c256-agentic-design-and-react.md`: Agentic Design Patterns Overview, `init_chat_model` Universal Interface, Chat Models & Temperature, System Prompts vs User Prompts, The `@tool` Decorator & Tool Calling, Structured Output with Pydantic, Simple ReAct Agent Creation (`create_agent`).
+- [x] Create `c256-langchain-foundations-and-agents.md`: Build a Basic LangChain Agent with Bedrock Runtime API, `init_chat_model` Universal Interface, System Prompts, Structured Output & Pydantic, Streaming Responses & Token Economics, Context vs. Prompt Engineering.
 
 ### Instructor Demo
 
-- [x] Create `d054-simple-react-agent.py`: Compile a ReAct agent, configure basic `@tool` decorators, and demonstrate deterministic outputs using Pydantic.
+- [x] Create `d054-langchain-bedrock-foundations.py`: Demonstrate basic agent creation using AWS Bedrock as the runtime, configuring streaming response payloads, and enforcing structured JSON outputs.
 
 ### Trainee Exercise
 
-- [x] Create `e040-building-a-basic-agent.md`: Build a simple assistant with an initialized chat model that routes complex calculations to custom `@tool` functions.
+- [x] Create `e040-building-your-first-bedrock-agent.md`: Build a simple assistant using Bedrock that routes complex calculations to custom `@tool` functions and supports real-time streaming.
 
-## 2-Tuesday
+## 2-Tuesday: Middleware and State Persistence
 
 ### Written Content
 
-- [x] Create `c257-context-engineering-and-langsmith.md`: Context Engineering Implementation, Dynamic System Prompts (`@dynamic_prompt`), LangChain Standard Application Structure, Tracing Agent Execution, Debugging Traces & Latency, Creating Datasets in LangSmith, Handling Context Window Limits.
+- [x] Create `c257-middleware-and-memory-persistence.md`: Use Prebuilt and Custom Middleware, Trimming & Sliding Windows, Short-Term vs. Long-Term Memory, Dynamic Few-Shotting Strategies, Injection & Stuffing Guardrails, Multi-Agent Context Handoffs, State Persistence & Step-wise Scratchpads.
 
 ### Instructor Demo
 
-- [x] Create `d055-dynamic-prompts-and-tracing.py`: Set up dynamic prompt chaining and trace token outputs natively through LangSmith to monitor latency limits.
+- [x] Create `d055-middleware-and-state-management.py`: Implement custom middleware for PII masking and security guardrails while saving agent state using a persistent step-wise scratchpad.
 
 ### Trainee Exercise
 
-- [x] Create `e041-tracing-agent-execution.md`: Engineer robust dynamic prompts, execute edge-case logic, and evaluate token costs programmatically in LangSmith datasets.
+- [x] Create `e041-securing-and-persisting-agents.md`: Engineer robust memory management by implementing sliding window message history and a persistent state saver with security middleware.
 
-## 3-Wednesday
+## 3-Wednesday: Vector DBs and Context Optimization
 
 ### Written Content
 
-- [x] Create `c258-vector-databases-and-pinecone.md`: Vector Database Introduction, Embeddings Models & Dimensions, Cosine Similarity vs Euclidean Distance, Pinecone Setup & Configuration, Index Management & Namespaces, CRUD Operations (Upsert/Query), Metadata Filtering Strategies.
+- [x] Create `c258-vector-dbs-and-context-optimization.md`: Vector Database Lifecycle (Pinecone), Serverless vs Pod-based, Index Management, Namespaces, Context Compression & Distillation, Re-ranking & Context Pruning, Observability with LangSmith.
 
 ### Instructor Demo
 
-- [x] Create `d056-pinecone-upsert-and-query.py`: Configure Pinecone cloud vectors with namespaces, compute embeddings, and execute precise similarity searches with metadata filtering.
+- [x] Create `d056-pinecone-vector-management.py`: Demonstrate live Pinecone CRUD operations (Upsert/Query) and optimize retrieval throughput using Re-ranking and Context Pruning.
 
 ### Trainee Exercise
 
-- [x] Create `e042-vector-search-implementation.md`: Embed diverse string datasets and construct logical Pinecone queries implementing dense-vector similarity and namespace isolation.
+- [x] Create `e042-optimizing-vector-retrieval.md`: Embed datasets into Pinecone while implementing context compression and re-ranking to improve search precision and reduce token noise.
 
-## 4-Thursday
+## 4-Thursday: Retrieval Evaluation and RAGAS
 
 ### Written Content
 
-- [x] Create `c259-document-loaders-and-retrievers.md`: Document Loaders (PDF, Web, Text), Text Splitting Techniques, `create_retriever` Implementation, Vector Search vs Keyword Search, Custom Retriever Logic, Handling Multi-Modal Data, Indexing Optimization.
+- [x] Create `c259-retrieval-evaluation-and-ragas.md`: Word Embeddings & Similarity Search, Distance Metrics, Sentence Transformers & Partitioning, `create_retriever` Implementation, Retrieval Evaluation with RAGAS, Indexing Optimization.
 
 ### Instructor Demo
 
-- [x] Create `d057-custom-retriever-logic.py`: Load generic unformatted text, divide into manageable chunk boundaries, and link directly to a LangChain retriever pipeline.
+- [x] Create `d057-ragas-retrieval-audit.py`: Build a production LangChain retriever and perform a formal audit of its performance (faithfulness, relevancy) using the RAGAS framework.
 
 ### Trainee Exercise
 
-- [x] Create `e043-building-a-document-loader.md`: Develop recursive character string splitters on PDF documents, storing chunks securely to be utilized within an indexing retriever stream.
+- [x] Create `e043-evaluating-complex-rag.md`: Load and chunk PDF documents, store them in Pinecone, and perform a formal RAGAS evaluation on the results with observability feedback loops.
 
-## 5-Friday
+## 5-Friday: Advanced Agentic Design & Security
 
 ### Written Content
 
-- [x] Create `c260-agentic-rag-integration.md`: Retrievers as Tools: Design Pattern, Agentic RAG Workflow, Citations & Provenance, Building a Doc QA Bot (End-to-End).
+- [x] Create `c260-advanced-agents-and-mcp.md`: Prompt Management & Versioning, Online Evaluation & HITL, Multi-Agent Orchestration, Model Context Protocol (MCP), Injection & Stuffing Guardrails, Context Engineering.
 
 ### Instructor Demo
 
-- [x] Create `d058-doc-qa-bot-end-to-end.py`: Transform the custom retriever into a callable Tool and inject robust citation references alongside the final response payload.
+- [x] Create `d058-mcp-and-multi-agent-patterns.py`: Demonstrate a production multi-agent system using MCP for data interaction and implementing Human-in-the-Loop (HITL) approval workflows.
 
 ### Trainee Exercise
 
-- [x] Create `e044-agentic-rag-workflow.md`: Construct an end-to-end Doc QA interaction loop answering domain-specific inquiries directly sourced back into their textual origins.
+- [x] Create `e044-production-grade-agent-security.md`: Construct a production-grade secured bot that implements multi-agent handoffs, MCP-based tool discovery, and advanced context engineering.

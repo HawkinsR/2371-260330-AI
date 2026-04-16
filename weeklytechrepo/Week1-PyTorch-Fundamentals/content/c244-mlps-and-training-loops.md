@@ -23,11 +23,21 @@ The key insight that makes deep networks powerful: stacking purely linear layers
 
 **ReLU** (Rectified Linear Unit) is the most commonly used activation function. Its formula is: `f(x) = max(0, x)`. It passes positive values through unchanged and sets negative values to zero. It is computationally cheap and works well in practice.
 
+> [!CAUTION]
+> **Linear vs. Activation:** Do not confuse `nn.Linear` with an activation function. `nn.Linear` is the structural layer holding the model's learned Weights and Biases. Activation functions like `nn.ReLU` are the math operations applied *after* the `nn.Linear` layer. Every Hidden Layer typically requires both: an `nn.Linear` to learn patterns, immediately followed by an `nn.ReLU` to make those patterns non-linear. The final Output Layer, however, normally uses just an `nn.Linear` because the final activation (such as Softmax for classification probabilities) is usually calculated automatically by PyTorch's Loss Function.
+
 > **Key Term - Multi-Layer Perceptron (MLP):** A feedforward neural network with at least one hidden layer between the input and output. Each node in a hidden layer applies a weighted sum of its inputs followed by a non-linear activation function.
 
 > **Key Term - Non-linearity:** A mathematical property meaning the relationship between inputs and outputs is not a straight line. Without non-linearity, stacked linear layers collapse into a single linear transformation and cannot model complex data.
 
 > **Key Term - ReLU (Rectified Linear Unit):** An activation function defined as `f(x) = max(0, x)`. It is the default choice for hidden layers because it is simple, fast to compute, and avoids some gradient degradation problems present in older activation functions like Sigmoid.
+
+### Mixing Activation Functions
+
+While the underlying math allows you to use completely different activation functions on every hidden layer (e.g., mixing `ReLU` with `Tanh` across your `forward` method), doing so is highly unusual in standard Neural Network architectures.
+
+- **Uniform Hidden Layers:** Industry standard practice is to pick one effective activation function (like `ReLU` or `LeakyReLU`) and use it consistently across *all* Hidden Layers to ensure stable, easily optimized gradients.
+- **The Output Layer Exception:** The Output Layer is the standard exception. It almost always requires a *different* activation function based entirely on the task you are trying to solve (e.g., `Sigmoid` for binary classification, or `Softmax` for multi-class). You only mix internal hidden layer activations in advanced, specialized loops (like LSTMs or custom gating mechanisms).
 
 ### Width vs Depth
 

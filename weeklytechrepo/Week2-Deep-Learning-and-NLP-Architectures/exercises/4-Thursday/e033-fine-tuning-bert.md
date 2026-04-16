@@ -19,5 +19,6 @@ Your company has decided to transition away from writing custom PyTorch LSTMs fr
    - Use `torch.argmax` on probabilities to find the `predicted_classes` index (0 for Negative, 1 for Positive).
 
 ## Definition of Done
-- The script executes successfully and downloads the model from Hugging Face Hub if not cached.
-- The output clearly prints the three reviews and their corresponding predicted sentiments ("POSITIVE" or "NEGATIVE") based on the model's Softmax probabilities.
+- The script executes successfully (the model loads from cache or downloads from Hugging Face Hub without error).
+- The output clearly prints each of the three reviews alongside their predicted sentiment label (`POSITIVE` or `NEGATIVE`) and a confidence score derived from the Softmax probabilities.
+- The `Raw Logits Shape` printed to console is `torch.Size([3, 2])` — confirming all 3 reviews were processed in a single batched forward pass.
